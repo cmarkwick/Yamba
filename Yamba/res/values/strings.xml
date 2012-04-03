@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, StatusActivity!</string>
+    <string name="app_name">Yamba</string>
+    <string name="status_update">Status Update</string>
+    <string name="button_update">Update!</string>
+    <string name="hint">Please enter your status update</string>
+    <string name="start_service">Start Service</string>
+    <string name="stop_service">Stop Service</string>
+    <string name="refresh">Refresh</string>
+    <string name="username">Username</string>
+    <string name="username_summary">Enter your login username</string>
+    <string name="password">Password</string>
+    <string name="password_summary">Enter your login password</string>
+    <string name="server">Enter your server API root</string>
+    <string name="preferences">Preferences</string>
+    <string name="delay_summary">How frequently to check for updates</string>
+    <string name="delay">Delay</string>
+</resources>
