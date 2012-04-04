@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="hello">Hello World, StatusActivity!</string>
     <string name="app_name">Yamba</string>
     <string name="status_update">Status Update</string>
@@ -16,4 +17,17 @@
     <string name="preferences">Preferences</string>
     <string name="delay_summary">How frequently to check for updates</string>
     <string name="delay">Delay</string>
+
+    <string-array name="delayNames">
+        <item>Every minute</item>
+        <item>Every 5 minutes</item>
+        <item>Every half hour</item>
+    </string-array>
+    <string-array name="delayValues">
+        <item>60</item>
+        <item>300</item>
+        <item>1800</item>
+        <item>3600</item>
+    </string-array>
+
 </resources>
