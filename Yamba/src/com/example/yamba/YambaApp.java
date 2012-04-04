@@ -20,10 +20,6 @@ public class YambaApp extends Application implements OnSharedPreferenceChangeLis
 		//prefs stuff
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
-		
-		
-		
-
 		Log.d(TAG,"OnCreated");
 	}
 	
@@ -41,9 +37,10 @@ public class YambaApp extends Application implements OnSharedPreferenceChangeLis
 	}
 
 	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+	public void onSharedPreferenceChanged(SharedPreferences prefs,
 			String key) {
 		twitter = null;
+		this.prefs = prefs;
 		Log.d(TAG,"onSharedPreferenceChanged(SharedPreferences for key: " + key);
 		
 	}
