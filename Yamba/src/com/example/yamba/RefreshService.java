@@ -27,9 +27,11 @@ public class RefreshService extends IntentService{
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		Log.d(TAG, "onHandleIntent");
+		StatusData statusData = ((YambaApp)getApplication()).statusData;
 		try {
 			List<Status> timeline = ((YambaApp)getApplication()).getTwitter().getPublicTimeline();
 			for (Status status : timeline) {
+				statusData.insert(status);
 				Log.d(TAG, String.format("%s: %s", status.user.name,
 						status.text));
 			
