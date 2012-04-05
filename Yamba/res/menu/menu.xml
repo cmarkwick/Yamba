@@ -2,6 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/item_statusUpdate"
+        android:title="@string/status_update">
+    </item>
+    <item
+        android:id="@+id/item_prefs"
+        android:title="@string/preferences">
+    </item>
+    <item
+        android:id="@+id/item_refresh"
+        android:title="@string/refresh">
+    </item>
+    <item
         android:id="@+id/item_start_service"
         android:title="@string/start_service">
     </item>
@@ -9,10 +21,5 @@
         android:id="@+id/item_stop_service"
         android:title="@string/stop_service">
     </item>
-    <item 
-    	android:id="@+id/item_refresh" 
-    	android:title="@string/refresh">
-    </item>
-    <item android:id="@+id/item_prefs" android:title="@string/preferences"></item>
 
 </menu>
