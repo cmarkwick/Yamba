@@ -17,6 +17,8 @@ public class YambaApp extends Application implements
 
 	static final String TAG = "YambaApp";
 	static final String ACTION_NEW_STATUS = "com.example.yamba.NEW_STATUS";
+	static final String ACTION_REFRESH = "com.example.yamba.RefreshService";
+	static final String ACTION_REFRESH_ALARM = "com.example.yamba.RefreshAlarm";
 
 	private Twitter twitter;
 	SharedPreferences prefs;
@@ -46,10 +48,11 @@ public class YambaApp extends Application implements
 		return twitter;
 
 	}
-
+	static final Intent refreshAlarm = new Intent(ACTION_REFRESH_ALARM);
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 		twitter = null;
+		sendBroadcast(refreshAlarm);
 		Log.d(TAG, "onSharedPreferenceChanged(SharedPreferences for key: "
 				+ key);
 

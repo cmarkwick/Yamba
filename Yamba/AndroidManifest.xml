@@ -12,8 +12,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <permission
-        android:name="com.sample.yamba.permission.REFRESH"
-        android:protectionLevel="dangerous" >
+        android:name="com.example.yamba.permission.REFRESH"
+        android:protectionLevel="signature" >
     </permission>
 
     <application
@@ -42,11 +42,16 @@
         </service>
         <service
             android:name=".RefreshService"
-            android:permission="com.sample.yamba.permission.REFRESH" >
+            android:permission="com.example.yamba.permission.REFRESH" >
+            <intent-filter>
+                <action android:name="com.example.yamba.RefreshService" />
+            </intent-filter>
         </service>
 
-        <receiver android:name=".BootReceiver" >
+        <receiver android:name=".RefreshScheduleReceiver" >
             <intent-filter>
+                <action android:name="com.example.yamba.TEST_BROADCAST" />
+                <action android:name="com.example.yamba.RefreshAlarm" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
