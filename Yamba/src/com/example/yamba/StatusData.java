@@ -4,10 +4,7 @@ import winterwell.jtwitter.Twitter.Status;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
-import android.util.Log;
 
 public class StatusData {
 
@@ -22,61 +19,30 @@ public class StatusData {
 
 	Context context;
 
-	DbHelper dbHelper;
-	SQLiteDatabase db;
-
 	public StatusData(Context context) {
 		this.context = context;
-		dbHelper = new DbHelper();
 	}
 
 	public void insert(Status status) {
+		context.getContentResolver().insert(StatusProvider.CONTENT_URI, statusToValues(status));
+	}
 
+	public Cursor query() {
+
+		return context.getContentResolver().query(StatusProvider.CONTENT_URI,
+				null, null, null, StatusData.C_CREATED_AT + " DESC");
+	}
+	
+	public ContentValues statusToValues(Status status){
+		
 		ContentValues values = new ContentValues();
 		values.put(C_ID, status.id);
 		values.put(C_CREATED_AT, status.createdAt.getTime());
 		values.put(C_USER, status.user.name);
 		values.put(C_TEXT, status.text);
-
-		db = dbHelper.getWritableDatabase();
-		db.insertWithOnConflict(TABLE, null, values,
-				SQLiteDatabase.CONFLICT_IGNORE);
+		
+		context.getContentResolver().insert(StatusProvider.CONTENT_URI, values);
+		return values;
 	}
 
-	public Cursor query() {
-		db = dbHelper.getReadableDatabase();
-		Cursor cursor = db.query(TABLE, null, null, null, null, null,
-				C_CREATED_AT + " DESC");
-		cursor.moveToFirst();
-
-		return cursor;
-	}
-
-	
-	class DbHelper extends SQLiteOpenHelper {
-
-		public DbHelper() {
-			super(context, DB_NAME, null, DB_VERSION);
-
-		}
-
-		@Override
-		public void onCreate(SQLiteDatabase db) {
-			String sql = String.format("Create table %s "
-					+ "(%s int primary key, %s int, %s text, %s text)", TABLE,
-					C_ID, C_CREATED_AT, C_USER, C_TEXT);
-			Log.d(TAG, "onCreate with SQL: " + sql);
-			db.execSQL(sql);
-
-		}
-
-		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// Usually ALTER TABLE statement
-			db.execSQL("drop if exists" + TABLE);
-			onCreate(db);
-
-		}
-
-	}
 }
