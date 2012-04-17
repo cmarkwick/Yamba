@@ -1,6 +1,5 @@
 package com.example.yamba;
 
-import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.TwitterException;
 import android.app.Activity;
 import android.app.ProgressDialog;

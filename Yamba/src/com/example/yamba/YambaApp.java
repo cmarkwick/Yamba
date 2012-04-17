@@ -22,8 +22,7 @@ public class YambaApp extends Application implements
 
 	private Twitter twitter;
 	SharedPreferences prefs;
-	StatusData statusData;
-
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -33,7 +32,6 @@ public class YambaApp extends Application implements
 		prefs.registerOnSharedPreferenceChangeListener(this);
 		Log.d(TAG, "OnCreated");
 
-		statusData = new StatusData(this);
 	}
 
 	// twitter stuff
@@ -67,7 +65,7 @@ public class YambaApp extends Application implements
 			List<Status> timeline = getTwitter().getPublicTimeline();
 
 			for (Status status : timeline) {
-				statusData.insert(status);
+				getContentResolver().insert(StatusProvider.CONTENT_URI, StatusProvider.statusToValues(status));
 				//if (biggestTimestamp == -1) biggestTimestamp = status.createdAt.getTime();
 				if (status.createdAt.getTime() > this.lastTimestampSeen) {
 					count++;
